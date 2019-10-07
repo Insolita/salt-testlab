@@ -1,17 +1,25 @@
-#Local salt state testing environment
+# Local salt state testing environment
 Inspired by https://github.com/amolenaar/salt-formula-testing but use more fresh environment
 - debian9, debian10, ubuntu18.04
 - salt 2019.2
 - python3
 
 ### Directory structure:
+
 /
+
   _docker/   - docker images
+
   _vagrant/  - vagrant server with salt
+
       salt/      - salt config provision
+
   suites/    - base dir for suites (sets of states or formulas)
+
      demo/   - simple demo suite
+
   tests/     - base dir for tests
+  
 
 
 
