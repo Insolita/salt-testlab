@@ -19,7 +19,7 @@ Inspired by https://github.com/amolenaar/salt-formula-testing but use more fresh
      demo/   - simple demo suite
 
   tests/     - base dir for tests
-  
+
 
 
 
@@ -37,14 +37,15 @@ Inspired by https://github.com/amolenaar/salt-formula-testing but use more fresh
       - testinfra
       - pytest
 
+   - `cd salt-testlab`
   
    **Run with Vagrant**
    (vagrant provide preconfigured env with masterless salt and testinfra)
 
    - run `cd salt-testlab/_vagrant && vagrant up`
    - enter in vagrant machine: `vagrant ssh`
+   - `cd /srv`
 
-- `cd salt-testlab`
 
 - Run existed tests 
    - `py.test -v -s tests/test_self`
@@ -53,12 +54,17 @@ Inspired by https://github.com/amolenaar/salt-formula-testing but use more fresh
 - Put own formulas in suites folder 
   
   each suite structure should be as
+
      sutenameX/
+
            pillar
+
            states
-           ...
+           
            modules
+
            ...
+           
            top.sls
 
     
