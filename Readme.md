@@ -48,8 +48,8 @@ Inspired by https://github.com/amolenaar/salt-formula-testing but use more fresh
 
 
 - Run existed tests 
-   - `py.test -v -s tests/test_self`
-   - `py.test -v -s tests/test_demo`
+   - `py.test -v -s tests/test_self.py`
+   - `py.test -v -s tests/test_demo.py`
 
 - Put own formulas in suites folder 
   
