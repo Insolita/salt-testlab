@@ -67,8 +67,22 @@ Inspired by https://github.com/amolenaar/salt-formula-testing but use more fresh
            
            top.sls
 
-    
 
+### run_docker helper script
+
+Use docker_run helper for build and run docker images on local machines
+
+Usage:
+
+  `./run_docker --image=ubuntu_bionic --suite=my_formula`
+
+  next run
+
+  `docker exec -it ubuntu_bionic /bin/bash` 
+
+- suite data will be plased at /srv/salt and you can run any `salt-call --local commands`
+
+  With `./run_docker --image=ubuntu_bionic --suite=my_formula --hs` you can automatically run state.highstate if you have defined top.sls file
   
 ### Useful Docs 
 
