@@ -1,0 +1,3 @@
+tests/__*
+tests/*_cache
+*_cache

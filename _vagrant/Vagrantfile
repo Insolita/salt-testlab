@@ -1,0 +1,33 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+
+  config.vm.provider "virtualbox" do |vb|
+    vb.customize ["modifyvm", :id, "--memory", "2048"]
+  end
+
+  #
+  config.vm.box = "ubuntu/bionic64"
+  config.vm.hostname = "salt-dev"
+
+  ## For masterless, mount your salt file root
+  config.vm.synced_folder "./salt", "/srv/salt"
+  config.vm.synced_folder "../suites", "/srv/suites"
+  config.vm.synced_folder "../tests", "/srv/tests"
+  config.vm.synced_folder "../_docker", "/srv/_docker"
+
+
+  ## Use all the defaults:
+  config.vm.provision :salt do |salt|
+    salt.masterless = true
+    salt.run_highstate = true
+    salt.minion_config = "salt-dev-minion"
+    salt.verbose = true
+    salt.python_version = "3"
+    salt.install_type = "stable"
+    #salt.install_args = "2019.2.2"
+    salt.log_level = "info"
+    salt.bootstrap_options = "-P -x python3"
+  end
+end

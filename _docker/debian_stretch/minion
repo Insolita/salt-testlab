@@ -1,0 +1,11 @@
+id: debian_stretch
+file_client: local
+
+file_roots:
+  base:
+    - /srv/salt/
+
+pillar_roots:
+  base:
+    - /srv/salt/pillar    
+pillar_safe_render_error: False
