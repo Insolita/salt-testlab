@@ -1,3 +1,5 @@
 tests/__*
 tests/*_cache
 *_cache
+local_suites/*
+local_tests/*

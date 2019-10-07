@@ -33,14 +33,19 @@ def volume_map():
     @example
        return ['/srv/suites/xxx:/srv/salt']
     """        
-
-    return ['%s:/srv/salt' % base_path('salt')]
+    if(path.exists(base_path('_vagrant'))):
+        #assume test runned from local machine
+        src = base_path('_vagrant/salt')
+    else:
+        src = base_path('salt')
+    return ['%s:/srv/salt' % src]
 
     
 @pytest.fixture(scope='module', autouse=True)
 def docker_host(request, image_name, volume_map):
     image_path = '%s/%s' % (dockers_dir(), image_name)
     print('docker image_path ', image_path)
+    local.run("docker rm -f %s", image_name)
     # build images
     cmd = local.run("docker build -t %s %s" % (image_name, image_path))
     assert cmd.rc == 0
@@ -58,4 +63,15 @@ def docker_host(request, image_name, volume_map):
     request.addfinalizer(teardown)
     # return a testinfra connection to the container
     docker = testinfra.get_host("docker://" + docker_id)
+    docker.run('cd /srv/salt')
     yield docker
+
+def salt_call(docker, cmd):
+    '''
+     Exec salt command with colorized yaml output
+     @param docker: Host 
+     @param cmd: str 
+    '''
+    cmd = docker.run("salt-call --local --force-color --retcode-passthrough %s" % cmd)
+    print(cmd.stdout)
+    assert cmd.rc == 0

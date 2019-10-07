@@ -14,7 +14,7 @@ ADD preferences /etc/apt/preferences
 
 # clean out, update and install some base utilities
 RUN apt-get -y update && \
-	apt-get -y install apt-utils lsb-release curl wget git cron at logrotate rsyslog \
+	apt-get -y install apt-utils lsb-release curl wget git cron at logrotate rsyslog apt-transport-https\
 		unattended-upgrades ssmtp lsof procps openssh-server sshpass python3 sudo gnupg  \
 		initscripts libsystemd0 libudev1 systemd sysvinit-utils udev fuse  util-linux python3-psycopg2  && \
 	apt-get clean && \
